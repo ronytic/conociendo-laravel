@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/producto/nuevo', function () {
+    return "AQUI VA EL FORMULARIO PARA CREAR UN NUEVO PRODUCTO";
+});
