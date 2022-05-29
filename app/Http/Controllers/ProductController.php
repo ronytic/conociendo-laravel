@@ -78,11 +78,11 @@ class ProductController extends Controller
         $dataResponse = [
             'status' => 'success',
             'data' => [
-                'name'=> $dataProduct->name,
-                'price'=> $dataProduct->price,
-                'detail'=> $dataProduct->detail,
-                'photo'=> Storage::url($dataProduct->photo),
-                'photo_base64' => base64_encode(Storage::get('public/'.$dataProduct->photo)),
+                'name' => $dataProduct->name,
+                'price' => $dataProduct->price,
+                'detail' => $dataProduct->detail,
+                'photo' => Storage::url($dataProduct->photo),
+                'photo_base64' => base64_encode(Storage::get('public/' . $dataProduct->photo)),
             ],
         ];
 
