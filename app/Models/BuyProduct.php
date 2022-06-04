@@ -16,4 +16,17 @@ class BuyProduct extends Model
     {
         return $this->belongsTo(Product::class, 'id_product', 'id_product');
     }
+
+    public static function storeBuyProduct($id_product, $quantity)
+    {
+        $buyProduct = new BuyProduct();
+
+        $buyProduct->id_product = $id_product;
+        $buyProduct->quantity = $quantity;
+        $buyProduct->state = 1;
+
+        $buyProduct->save();
+
+        return $buyProduct;
+    }
 }

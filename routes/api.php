@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -28,8 +29,15 @@ Route::group(['prefix' => 'products'], function () {
     Route::delete('{product}', [ProductController::class, 'delete']);
     Route::put("{product}", [ProductController::class, 'update']);
 });
-// Route::prefix('products')->group(function () {
-// });
+
+Route::prefix('buys')->group(function () {
+    Route::apiResource("products", BuyProductController::class);
+});
+
+
+
+
+
 
 
 // Route::post('products/create', [ProductController::class, 'create']);
