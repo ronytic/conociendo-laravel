@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\BuyProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PassportController;
 use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\BuyProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix' => 'products'], function () {
+Route::post('register', [PassportController::class, 'register']);
+Route::post('login', [PassportController::class, 'login']);
+
+
+Route::group(['prefix' => 'products', 'middleware' => 'auth:api'], function () {
     Route::post('create', [ProductController::class, 'create']);
     Route::get('list', [ProductController::class, 'list']);
     Route::get('show/{product}', [ProductController::class, 'show']);
@@ -30,7 +35,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::put("{product}", [ProductController::class, 'update']);
 });
 
-Route::prefix('buys')->group(function () {
+Route::middleware('auth:api')->prefix('buys')->group(function () {
     Route::apiResource("products", BuyProductController::class);
 });
 
